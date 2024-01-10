@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://ds7gc5oky2ft5"]
 
-[ext_resource type="Script" path="res://level/level.gd" id="1_yp1qa"]
-[ext_resource type="Script" path="res://player/Player.gd" id="2_lke2b"]
+[ext_resource type="Script" path="res://level/level.gd" id="1_i4cms"]
+[ext_resource type="Script" path="res://player/Player.gd" id="1_paw7h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0gp13"]
 sky_top_color = Color(0.0313726, 0.211765, 0.439216, 1)
@@ -38,7 +38,7 @@ albedo_color = Color(0.780392, 0, 0.0509804, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ddti1"]
 
 [node name="Level" type="Node3D"]
-script = ExtResource("1_yp1qa")
+script = ExtResource("1_i4cms")
 
 [node name="Environment" type="Node" parent="."]
 
@@ -56,7 +56,7 @@ material = SubResource("StandardMaterial3D_nssxa")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606109, 0)
-script = ExtResource("2_lke2b")
+script = ExtResource("1_paw7h")
 metadata/_edit_group_ = true
 
 [node name="Body" type="MeshInstance3D" parent="Player"]
