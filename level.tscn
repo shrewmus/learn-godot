@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://ds7gc5oky2ft5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0gp13"]
+sky_top_color = Color(0.0313726, 0.211765, 0.439216, 1)
+sky_horizon_color = Color(0.290196, 0.701961, 0.933333, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7jw01"]
+sky_material = SubResource("ProceduralSkyMaterial_0gp13")
+
+[sub_resource type="Environment" id="Environment_gvj11"]
+background_mode = 2
+sky = SubResource("Sky_7jw01")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nssxa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b4he0"]
+albedo_color = Color(0.529412, 0.443137, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4imgp"]
+material = SubResource("StandardMaterial3D_b4he0")
+
+[sub_resource type="BoxMesh" id="BoxMesh_8f6k5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yysgh"]
+albedo_color = Color(0.317647, 0.317647, 0.317647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r8kh3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhgnp"]
+albedo_color = Color(0.780392, 0, 0.0509804, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ddti1"]
+
+[node name="Level" type="Node3D"]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_gvj11")
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 40, 0, -1, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_nssxa")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606109, 0)
+metadata/_edit_group_ = true
+
+[node name="Body" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_4imgp")
+
+[node name="Arm" type="CSGMesh3D" parent="CharacterBody3D/Body"]
+transform = Transform3D(0.24404, 0, 0, 0, 0.239875, 0, 0, 0, 0.832989, -0.377007, 0, 0.534543)
+mesh = SubResource("BoxMesh_8f6k5")
+material = SubResource("StandardMaterial3D_yysgh")
+
+[node name="Eyes" type="CSGMesh3D" parent="CharacterBody3D/Body"]
+transform = Transform3D(0.873157, 0, 0, 0, 0.125092, 0, 0, 0, 0.336037, 0, 0.431011, 0.355246)
+mesh = SubResource("BoxMesh_r8kh3")
+material = SubResource("StandardMaterial3D_dhgnp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_ddti1")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.453555, 0.891228, 0, -0.891228, 0.453555, 0, 18.4351, 16.7919)
