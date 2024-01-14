@@ -1,7 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://ds7gc5oky2ft5"]
+[gd_scene load_steps=16 format=3 uid="uid://ds7gc5oky2ft5"]
 
 [ext_resource type="Script" path="res://level/level.gd" id="1_i4cms"]
 [ext_resource type="Script" path="res://player/Player.gd" id="1_paw7h"]
+[ext_resource type="Script" path="res://player/GunController.gd" id="3_k6cdv"]
+[ext_resource type="PackedScene" uid="uid://l3eu0of02yrh" path="res://player/gun.tscn" id="4_iwvcj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0gp13"]
 sky_top_color = Color(0.0313726, 0.211765, 0.439216, 1)
@@ -62,8 +64,11 @@ metadata/_edit_group_ = true
 [node name="Body" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_4imgp")
 
+[node name="Hand" type="Marker3D" parent="Player/Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.562059, 0, 0.990223)
+
 [node name="Arm" type="CSGMesh3D" parent="Player/Body"]
-transform = Transform3D(0.24404, 0, 0, 0, 0.239875, 0, 0, 0, 0.832989, -0.377007, 0, 0.534543)
+transform = Transform3D(0.249, 0, 0, 0, 0.221, 0, 0, 0, 1, -0.377007, 0, 0.534543)
 mesh = SubResource("BoxMesh_8f6k5")
 material = SubResource("StandardMaterial3D_yysgh")
 
@@ -75,5 +80,13 @@ material = SubResource("StandardMaterial3D_dhgnp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_ddti1")
 
+[node name="GunController" type="Node" parent="Player"]
+script = ExtResource("3_k6cdv")
+StartingWeapon = ExtResource("4_iwvcj")
+
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.453555, 0.891228, 0, -0.891228, 0.453555, 0, 18.4351, 16.7919)
+current = true
+
+[node name="Camera2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.859875, 2.8648)

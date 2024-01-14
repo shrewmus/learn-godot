@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://l3eu0of02yrh"]
+
+[ext_resource type="Script" path="res://player/gun.gd" id="1_46dx7"]
+[ext_resource type="PackedScene" uid="uid://ube82xnij81m" path="res://level/bullet.tscn" id="2_t0vkf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njhkt"]
+albedo_color = Color(0.176471, 0.768627, 0.4, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_igme2"]
+material = SubResource("StandardMaterial3D_njhkt")
+
+[node name="Gun" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_46dx7")
+Bullet = ExtResource("2_t0vkf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.09216, 0, 0, 0, 0.197071, 0, 0, 0, 0.239375, 0, 0, 0)
+mesh = SubResource("BoxMesh_igme2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.304883, -0.193875, 0, 0.337811, 0.174977, 0, 0, 0, 0.239375, -0.460879, -0.16554, 0)
+mesh = SubResource("BoxMesh_igme2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1.98908e-08, -0.26116, 0, 0.455049, -1.14157e-08, 0, 0, 0, 0.239375, 0.186233, -0.203163, 0)
+mesh = SubResource("BoxMesh_igme2")
+
+[node name="Muzzle" type="Marker3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.602917, 0, 0)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

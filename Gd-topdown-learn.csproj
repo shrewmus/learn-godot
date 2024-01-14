@@ -6,4 +6,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>Gdtopdownlearn</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="player\" />
+  </ItemGroup>
 </Project>
