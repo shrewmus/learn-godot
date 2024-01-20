@@ -22,7 +22,6 @@ func shoot():
 		new_bullet.speed = muzzle_speed
 		var scene_root: Node = get_tree().get_root().get_children()[0]
 		scene_root.add_child(new_bullet)
-		print("pew!")
 		can_shoot = false
 		rof_timer.start()
 

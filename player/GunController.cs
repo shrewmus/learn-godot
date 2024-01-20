@@ -20,12 +20,10 @@ public partial class GunController : Node
 	{
 		if (null != equippedWeapon)
 		{
-			GD.Print("Deleting equipped weapon");
 			equippedWeapon.QueueFree();
 		}
 		else
 		{
-			GD.Print("No equipped weapon");
 			equippedWeapon = weaponToEquip;
 			hand.AddChild(equippedWeapon);
 		}

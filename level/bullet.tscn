@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ube82xnij81m"]
+[gd_scene load_steps=5 format=3 uid="uid://ube82xnij81m"]
 
 [ext_resource type="Script" path="res://level/bullet.gd" id="1_bemm1"]
 
@@ -8,9 +8,20 @@ albedo_color = Color(0.368627, 0.207843, 0.00784314, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_mepph"]
 material = SubResource("StandardMaterial3D_e11yh")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dwnsu"]
+size = Vector3(0.103943, 0.10141, 0.103088)
+
 [node name="Bullet" type="Node3D"]
 script = ExtResource("1_bemm1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = SubResource("BoxMesh_mepph")
+
+[node name="Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.15527e-05, -0.000259399, 0.000335693)
+shape = SubResource("BoxShape3D_dwnsu")
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
